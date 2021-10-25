@@ -111,18 +111,19 @@ public class CommandeController {
     public Commande saveOrder(@Valid @RequestBody OrderForm orderForm){
     	List<OrderProduct> form = orderForm.getProducts();
     	System.out.println("Client" +orderForm.getClient()+orderForm.getPrixTotal());    
-    	System.out.println("PRODS" +form);
-    	
+    	System.out.println("PRODS" +form);    	
         Client client=new Client();
+        client.setId(orderForm.getClient().getId());
         client.setNom(orderForm.getClient().getNom());
         client.setPrenom(orderForm.getClient().getPrenom());
         client.setEmail(orderForm.getClient().getEmail());
       //  client.setAdresses(orderForm.getClient().getAdresses());
         client.setTelephone(orderForm.getClient().getTelephone());        
-        client=clientService.save(client);
+        client=clientService.save(client);        
         System.out.println("CLI::"+client.getNom());
         Commande commande=new Commande();
         commande.setClient(client);
+        System.out.println("CLICom::"+commande.getClient().getNom());
         commande.setDateCommande(new Date());
         commande.setPrixTotal(orderForm.getPrixTotal());
         commande=commandeService.save(commande);       

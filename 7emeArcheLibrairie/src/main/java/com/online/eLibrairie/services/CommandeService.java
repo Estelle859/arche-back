@@ -51,8 +51,10 @@ public class CommandeService {
 	 *  @return commande of the object commande saved    
 	 */  
     public Commande save(Commande commande) {
+    	System.out.println("COMMANDE FROM SERVICE" +commande.getClient().getId());
         return commandeRepository.save(commande);
     }
+    
     
    /**
     * this method is for deleting one commande from commande table    
