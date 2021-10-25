@@ -1,0 +1,6 @@
+com.online.eLibrairie
+com.online.eLibrairie.controllers
+com.online.eLibrairie.exceptions
+com.online.eLibrairie.models
+com.online.eLibrairie.repositories
+com.online.eLibrairie.services

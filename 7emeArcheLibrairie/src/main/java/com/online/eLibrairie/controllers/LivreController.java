@@ -15,9 +15,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.online.eLibrairie.models.Livre;
 import com.online.eLibrairie.services.LivreService;
 
+/**
+ * LivreController class is responsible for processing incoming REST API requests related to the articles of type Livre(book)
+ * @author stella
+ *
+ */
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api/livre")
-@CrossOrigin()
 public class LivreController {
 	
 	private final LivreService livreService;
@@ -26,9 +31,13 @@ public class LivreController {
 	public LivreController(LivreService livreService) {
 		this.livreService = livreService;
 	}
-	
+	/**
+	 * Read - Get one livre by its id
+	 * @param id of the livre
+	 * @return a Livre object full filled
+	 */
 	@GetMapping(path="/{id}")
-	public ResponseEntity<Optional<Livre>> getLivreById(@PathVariable Integer id){
+	public ResponseEntity<Optional<Livre>> getLivreById(@PathVariable Long id){
 		Optional<Livre> livreFound = livreService.getLivreById(id);
 		if(livreFound.isPresent()) {
 			return ResponseEntity.status(HttpStatus.OK).body(livreFound);
@@ -38,6 +47,10 @@ public class LivreController {
 		}
 	}
 	
+	/**
+	 * Read - Get all livres
+	 * @return list of all livres
+	 */
 	@GetMapping(path="/all")
 	public ResponseEntity<List<Livre>> getAllLivres(){
 		List<Livre> livres = livreService.getAllLivres();

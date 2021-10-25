@@ -1,14 +1,16 @@
 package com.online.eLibrairie.repositories;
 
-import java.util.List;
-
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-
 import com.online.eLibrairie.models.Article;
 
-
-public interface ArticleRepository extends JpaRepository<Article, Integer> {
+/**
+ * Interface for generic CRUD operations on a repository for Article
+ * we can implement certain methods for managing our Article
+ * like findAll(),findById(),save()
+ * @author stella
+ *
+ */
+public interface ArticleRepository extends JpaRepository<Article, Long> {
 	
 
 }

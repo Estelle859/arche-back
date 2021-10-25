@@ -1,2 +1,0 @@
-INSERT INTO `e_librairie`.`client` (`nom`, `prenom`, `email`, `telephone`, `motdepasse`) VALUES ('joseph', 'vivien', 'email', 'telephone', 'mdp');
-INSERT INTO `e_librairie`.`cliedfgdfjgfddfdfnt` (`ndfdfom`, `prenom`, `email`, `telephone`, `motdepasse`) VALUES ( 'joseph', 'benita', 'email', 'telephone', 'mdp');

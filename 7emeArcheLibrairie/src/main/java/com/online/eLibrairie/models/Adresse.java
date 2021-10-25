@@ -1,6 +1,7 @@
 package com.online.eLibrairie.models;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -17,66 +18,60 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
+/** 
+ * Represents client's address  
+ * 
+ * @author Stella
+ * @version 1.0
+ * @since 1.0
+ * 
+*/
+
+/*
+ * @Entity annotation specifies that the class is an Adresse entity and is mapped to the database adresse table
+ * @Table annotation specifies the name of the database table is adresse which us used for mapping.
+ * @Data generates all the boilerplate that is normally associated with simple POJOs (Plain Old Java Objects) and beans:
+ * getters for all fields, setters for all non-final fields, 
+ * and appropriate toString, equals and hashCode implementations that involve the fields of the class, 
+ * and a constructor that initializes all final fields, as well as all non-final fields with no initializer that have been marked with @NonNull, 
+ * in order to ensure the field is never null.
+ */
 @Entity
 @Table (name="adresse")
-public class Adresse  {
-	
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
+public class Adresse  {	
+	/*
+	 * @Id annotation specifies the primary key of the adresse and 
+	 * @GeneratedValue gives the generation strategy for primary key values.
+	 */
 	@Id
-	@Column(name="id")
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Integer id;
-	 
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;	 
 
 	private String rue;		 
 
 	private String codePostale;	
 
-	private String ville;	
+	private String ville;		
 	
-	
-	  @ManyToMany(fetch=FetchType.LAZY, cascade= {CascadeType.PERSIST,
-	  CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})	  
-	  @JoinTable( name="client_adresse", joinColumns=@JoinColumn(name="adresse_id",
-	  referencedColumnName = "id"),
-	  inverseJoinColumns=@JoinColumn(name="client_id", referencedColumnName = "id")	  
-	  ) 
-	  @JsonIgnore
-	  private List<Client> clients;
-	 
-	
-	public Integer getId() {
-		return id;
-	}
-	public void setId(Integer id) {
-		this.id = id;
-	}
-	public String getRue() {
-		return rue;
-	}
-	public void setRue(String rue) {
-		this.rue = rue;
-	}
-	public String getCodePostale() {
-		return codePostale;
-	}
-	public void setCodePostale(String codePostale) {
-		this.codePostale = codePostale;
-	}
-	public String getVille() {
-		return ville;
-	}
-	public void setVille(String ville) {
-		this.ville = ville;
-	}	
-	  public List<Client> getClients() { return clients; } 
-	  public void setClients(List<Client> clients) { this.clients = clients; }
-	 
-	@Override
-	public String toString() {
-		return "Adresse [id=" + id + ", rue=" + rue + ", codePostale=" + codePostale + ", ville=" + ville + "]";
-	}	
-	
-	
-
+ 	  
+	@ManyToMany(fetch=FetchType.LAZY,
+				cascade= {CascadeType.PERSIST, CascadeType.MERGE,
+				 CascadeType.DETACH, CascadeType.REFRESH})
+		@JoinTable(
+				name="clients_adresses",
+				joinColumns=@JoinColumn(name="adresse_id", referencedColumnName = "id"),
+				inverseJoinColumns=@JoinColumn(name="client_id", referencedColumnName = "id")
+				)
+		@JsonIgnore
+		private List<Client>  clients;
+	  
 }

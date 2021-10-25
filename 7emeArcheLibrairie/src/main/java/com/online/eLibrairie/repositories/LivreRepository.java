@@ -8,7 +8,11 @@ import org.springframework.stereotype.Service;
 
 import com.online.eLibrairie.models.Livre;
 
-
-public interface LivreRepository extends JpaRepository<Livre, Integer> {
+/**
+ * Interface for generic CRUD operations on a repository for Livre
+ * @author stella
+ *
+ */
+public interface LivreRepository extends JpaRepository<Livre, Long> {
 	
 }

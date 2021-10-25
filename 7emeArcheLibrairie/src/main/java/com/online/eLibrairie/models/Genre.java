@@ -15,14 +15,23 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
 
 @Entity
 @Table(name="genre")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class Genre {
 	
-	@Id	
-    @GeneratedValue(strategy=GenerationType.AUTO)
-	private Integer id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	
 	private String nom;	
 	
@@ -37,29 +46,6 @@ public class Genre {
 	@JsonIgnore
 	private List<Livre> livres;
 
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public String getNom() {
-		return nom;
-	}
-
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
-
-	public List<Livre> getLivres() {
-		return livres;
-	}
-
-	public void setLivres(List<Livre> livres) {
-		this.livres = livres;
-	}
-
+	
 	
 }

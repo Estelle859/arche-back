@@ -14,81 +14,49 @@ import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @Table (name="ligne_commande")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class LigneCommande {
 	
-	@Id	
-    @GeneratedValue(strategy=GenerationType.AUTO)
-	private Integer id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	
 	@Column(name="quantite_commande")
 	private Integer quantiteCommande;
 	
-	@Column(name="prix_ttc")	
-	private Double prixTTC;	 
-	
-	@Column(name="prix_ht")	
-	private Double prixHT;
+	@Column(name="prixUnitaire")	
+	private float prixUnitaire;	
 
-	@JsonBackReference
+//	@Column(name="prix_ttc")	
+//	private Double prixTTC;	 
+//	
+//	@Column(name="prix_ht")	
+//	private Double prixHT;
+//	
+//	@Column(name="prix_tva")	
+//	private float prixTVA;
+
+	
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "commande_id", referencedColumnName = "id")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Commande commande;
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "article_id", referencedColumnName = "id")
     private Article article;
-
-	public Commande getCommande() {
-		return commande;
-	}
-
-	public void setCommande(Commande commande) {
-		this.commande = commande;
-	}
-
-	public Article getArticle() {
-		return article;
-	}
-
-	public void setArticle(Article article) {
-		this.article = article;
-	}
-
-	public Integer getQuantiteCommande() {
-		return quantiteCommande;
-	}
-
-	public void setQuantiteCommande(Integer quantiteCommande) {
-		this.quantiteCommande = quantiteCommande;
-	}
-
-	public Double getPrixTTC() {
-		return prixTTC;
-	}
-
-	public void setPrixTTC(Double prixTTC) {
-		this.prixTTC = prixTTC;
-	}
-
-	public Double getPrixHT() {
-		return prixHT;
-	}
-
-	public void setPrixHT(Double prixHT) {
-		this.prixHT = prixHT;
-	}
-
-
-    @Transient
-    public Double getTotalPrix() {
-        return (double) (getArticle().getPrixUnitaire() * getQuantiteCommande());
-    }
-  
-
-
 
 }
 
