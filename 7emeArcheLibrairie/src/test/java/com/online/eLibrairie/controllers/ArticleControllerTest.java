@@ -42,6 +42,7 @@ class ArticleControllerTest {
 		MockitoAnnotations.initMocks(this);
     }
 
+    
 	@Test
 	void testArticleController() {
 		
@@ -63,8 +64,7 @@ class ArticleControllerTest {
     	            .andDo(print())
     	            .andExpect(content().contentType(MediaType.APPLICATION_JSON))
         	        .andExpect(status().isOk())
-    	            .andExpect(content().contentType("application/json"));
-         
+    	            .andExpect(content().contentType("application/json"));         
     	
 	}
 	
