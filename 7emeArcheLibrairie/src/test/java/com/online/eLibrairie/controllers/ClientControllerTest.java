@@ -29,7 +29,6 @@ import com.online.eLibrairie.models.Client;
 import com.online.eLibrairie.services.ClientService;
 
 
-@RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
 class ClientControllerTest {

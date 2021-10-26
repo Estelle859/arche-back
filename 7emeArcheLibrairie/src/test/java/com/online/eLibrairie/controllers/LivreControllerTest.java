@@ -28,7 +28,6 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import com.online.eLibrairie.models.Livre;
 import com.online.eLibrairie.services.LivreService;
 
-@RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
 class LivreControllerTest {
