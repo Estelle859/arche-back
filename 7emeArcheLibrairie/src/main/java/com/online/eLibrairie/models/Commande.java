@@ -72,7 +72,6 @@ public class Commande {
 	
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name="client_id", referencedColumnName = "id", insertable = false, updatable = false) 	
-	@JsonIgnore
 	private Client client;	
 
     @OneToMany(mappedBy = "commande")

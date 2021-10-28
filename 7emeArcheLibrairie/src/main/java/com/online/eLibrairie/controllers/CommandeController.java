@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.online.eLibrairie.models.Article;
 import com.online.eLibrairie.models.Client;
 import com.online.eLibrairie.models.Commande;
+import com.online.eLibrairie.models.LigneCommande;
 import com.online.eLibrairie.services.ArticleService;
 import com.online.eLibrairie.services.ClientService;
 import com.online.eLibrairie.services.CommandeService;
@@ -77,8 +79,10 @@ public class CommandeController {
 	 * @return Commande object full filled
 	 */
 
+
 	@GetMapping(path = "{id}")
 	public @NotNull Commande getCommande(@PathVariable Long id) {
+		System.out.println(commandeService.getCommande(id));
 		return commandeService.getCommande(id);
 	}
 
@@ -94,42 +98,7 @@ public class CommandeController {
 	 * @PostMapping gére les requête HTTP POST correspondant l' url /api/commande/
 	 */
 	public Commande saveOrder(@Valid @RequestBody Commande commande) {
-
-		System.out.println(commande);
 		commande.setDateCommande(new Date());		
-
-		// List<OrderProduct> form = orderForm.getProducts();
-		// System.out.println("Client" +orderForm.getClient()+orderForm.getPrixTotal());
-		// System.out.println("PRODUCTS" +form);
-//		Client client = new Client();
-//		client.setId(commande.getClient().getId());
-//		client.setNom(commande.getClient().getNom());
-//		client.setPrenom(commande.getClient().getPrenom());
-//		client.setEmail(commande.getClient().getEmail());
-//		// client.setAdresses(orderForm.getClient().getAdresses());
-//		client.setTelephone(commande.getClient().getTelephone());
-//		client = clientService.save(client);
-//		commande.setClient(client);
-//		System.out.println("CLI FROM COMMANDE::" + commande.getClient().getNom());
-//		commande.setDateCommande(new Date());
-//		commande.setPrixTotal(orderForm.getPrixTotal());
-//		commande = commandeService.save(commande);
-//		System.out.println("ORDERFORM::" + orderForm.getProducts().size());
-//		double total = 0;
-//		for (OrderProduct p : orderForm.getProducts()) {
-//			LigneCommande ligneCommande = new LigneCommande();
-//			ligneCommande.setCommande(commande);
-//			Article product = articleService.getArticle(p.getId());
-//			ligneCommande.setArticle(product);
-//			ligneCommande.setPrixUnitaire(product.getPrixUnitaire());
-//			ligneCommande.setQuantiteCommande(p.getQte());
-//			ligneCommandeService.save(ligneCommande);
-//			total += p.getQte() * product.getPrixUnitaire();
-//			System.out.println("TOTAL" + total);
-//		}
-//		// commande.setPrixTotal(total);
-//		System.out.println(commande.getDateCommande());
-
 		return commandeService.save(commande);
 	}
 //    private void validateProductsExistence(List<OrderProduct> orderProducts) {
